@@ -1,3 +1,4 @@
+
 buildscript {
     ext {
         grpcVersion = '1.66.0'
@@ -57,21 +58,21 @@ xjcGeneration {
     }
 }
 
-apollo {
-    service("niffler") {
-        generateKotlinModels.set(false)
-        packageName.set("guru.qa")
-        srcDir("src/test/graphql")
-        mapScalar("Date", "java.util.Date")
-        introspection {
-            endpointUrl.set("${gatewayGraphqlUrl}")
-            schemaFile.set(file("src/test/graphql/schema.graphqls"))
-        }
-        outputDirConnection {
-            connectToJavaSourceSet("test")
-        }
-    }
-}
+//apollo {
+//    service("niffler") {
+//        generateKotlinModels.set(false)
+//        packageName.set("guru.qa")
+//        srcDir("src/test/graphql")
+//        mapScalar("Date", "java.util.Date")
+//        introspection {
+//            endpointUrl.set("${gatewayGraphqlUrl}")
+//            schemaFile.set(file("src/test/graphql/schema.graphqls"))
+//        }
+//        outputDirConnection {
+//            connectToJavaSourceSet("test")
+//        }
+//    }
+//}
 
 sourceSets {
     test {
@@ -159,16 +160,16 @@ tasks.register('printVersion') {
     }
 }
 
-tasks.named { it == "generateNifflerApolloSources" }.configureEach {
-    dependsOn("downloadNifflerApolloSchemaFromIntrospection")
-}
+//tasks.named { it == "generateNifflerApolloSources" }.configureEach {
+//    dependsOn("downloadNifflerApolloSchemaFromIntrospection")
+//}
 
-test {
-    dependsOn("generateNifflerApolloSources")
-    options {
-        systemProperties(System.getProperties())
-    }
-    testLogging.showStandardStreams = true
-    testLogging.exceptionFormat = 'full'
-    useJUnitPlatform()
-}
+//test {
+//    dependsOn("generateNifflerApolloSources")
+//    options {
+//        systemProperties(System.getProperties())
+//    }
+//    testLogging.showStandardStreams = true
+//    testLogging.exceptionFormat = 'full'
+//    useJUnitPlatform()
+//}
